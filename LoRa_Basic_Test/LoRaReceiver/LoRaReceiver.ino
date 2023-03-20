@@ -2,12 +2,12 @@
 #include <LoRa.h>
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial);
 
   Serial.println("LoRa Receiver");
 
-  if (!LoRa.begin(915E6)) {
+  if (!LoRa.begin(868E6)) {
     Serial.println("Starting LoRa failed!");
     while (1);
   }
@@ -15,7 +15,6 @@ void setup() {
 
 void loop() {
   // try to parse packet
-  LoRa.idle();
   int packetSize = LoRa.parsePacket();
   if (packetSize) {
     // received a packet
